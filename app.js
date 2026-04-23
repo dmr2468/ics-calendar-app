@@ -1,4 +1,4 @@
-import ICAL from "https://unpkg.com/ical.js/dist/ical.min.js";
+import ICAL from "https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js";
 
 const ICS_URL = "https://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics";
 
