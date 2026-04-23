@@ -1,7 +1,7 @@
 
 
 const ICS_URL =
-  "https://raw.githubusercontent.com/jens-maus/node-ical/master/test/fixtures/festival-multiday-rrule.ics";
+  "https://ics.calendarlabs.com/95/84d417f2/Milwaukee_Brewers_-_MLB.ics";
 
 async function loadEvents() {
   const res = await fetch(ICS_URL);
