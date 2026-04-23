@@ -26,8 +26,7 @@ async function loadEvents() {
         end: ev.endDate ? ev.endDate.toJSDate() : null
       };
     })
-    .filter(e => e.start && e.start >= now)
-    .sort((a, b) => a.start - b.start);
+      .sort((a, b) => a.start - b.start);
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
