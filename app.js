@@ -40,11 +40,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const events = await loadEvents();
 
-  const calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: "dayGridMonth",
-    height: 650,
-    events
-  });
+  
+const calendar = new FullCalendar.Calendar(calendarEl, {
+  initialView: "dayGridMonth",
+
+  headerToolbar: {
+    left: "prev,next today",
+    center: "title",
+    right: "dayGridMonth,timeGridWeek,timeGridDay"
+  },
+
+  height: 650,
+  events
+});
+``
 
   calendar.render();
 });
