@@ -1,14 +1,28 @@
-<!DOCTYPE html>
+
+!DOCTYPE html>
 <html>
 <head>
   <title>ICS Calendar</title>
+
+  <!-- FullCalendar CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet">
+
 </head>
 <body>
-  <h1>ICS Calendar</h1>
-  <ul id="events"></ul>
 
-  <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js"></script>
+  <h1>ICS Calendar</h1>
+
+  <div id="calendar"></div>
+
+  <!-- FullCalendar JS -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+
+  <!-- ICAL.js -->
+  <script src="https://unpkg.com/ical.js/dist/ical.es5.min.cjs"></script>
+
+  <!-- Your app -->
   <script src="app.js"></script>
 
 </body>
 </html>
+
