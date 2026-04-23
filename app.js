@@ -29,6 +29,46 @@ async function loadEvents() {
       .sort((a, b) => a.start - b.start);
 }
 
+function loadNotes() {
+  const saved = JSON.parse(localStorage.getItem("familyNotes") || "[]");
+  const list = document.getElementById("notesList");
+
+  list.innerHTML = "";
+
+  saved.forEach((note, index) => {
+    const li = document.createElement("li");
+    li.textContent = note;
+
+    li.onclick = () => deleteNote(index);
+
+    list.appendChild(li);
+  });
+}
+
+function addNote() {
+  const input = document.getElementById("noteInput");
+  const value = input.value.trim();
+
+  if (!value) return;
+
+  const notes = JSON.parse(localStorage.getItem("familyNotes") || "[]");
+
+  notes.push(value);
+  localStorage.setItem("familyNotes", JSON.stringify(notes));
+
+  input.value = "";
+  loadNotes();
+}
+
+function deleteNote(index) {
+  const notes = JSON.parse(localStorage.getItem("familyNotes") || "[]");
+
+  notes.splice(index, 1);
+  localStorage.setItem("familyNotes", JSON.stringify(notes));
+
+  loadNotes();
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const calendarEl = document.getElementById("calendar");
 
