@@ -25,20 +25,29 @@ async function loadEvents() {
   });
 }
 
+
 async function render() {
   const events = await loadEvents();
+
+  const now = new Date();
+
+  const futureEvents = events
+    .filter(e => e.date > now)   // only future
+    .sort((a, b) => a.date - b.date); // earliest first
+
   const list = document.getElementById("events");
 
-  if (events.length === 0) {
-    list.innerHTML = "<li>No events found</li>";
+  if (futureEvents.length === 0) {
+    list.innerHTML = "<li>No upcoming events</li>";
     return;
   }
 
-  events.slice(0, 128).forEach(e => {
+  futureEvents.slice(0, 10).forEach(e => {
     const li = document.createElement("li");
-    li.textContent = `${e.title} - ${e.date}`;
+    li.textContent = `${e.title} - ${e.date.toDateString()}`;
     list.appendChild(li);
   });
 }
+
 
 render();
