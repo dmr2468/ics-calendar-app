@@ -7,22 +7,57 @@
   <!-- FullCalendar CSS -->
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet">
 
+<style>
+  body {
+    font-family: Arial;
+    margin: 0;
+    padding: 10px;
+  }
+
+  #dashboard {
+    display: flex;
+    gap: 20px;
+  }
+
+  #calendar {
+    flex: 3;
+  }
+
+  #sidebar {
+    flex: 1;
+    border-left: 1px solid #ccc;
+    padding-left: 10px;
+  }
+
+  #notesList li {
+    margin-bottom: 5px;
+  }
+
+  input {
+    width: 80%;
+  }
+</style>
+
 </head>
 <body>
+  <h1 style="text-align:center;">Family Dashboard</h1>
 
-  <h1>ICS Calendar</h1>
+  <div id="dashboard">
+    <div id="calendar"></div>
 
-  <div id="calendar"></div>
+    <div id="sidebar">
+      <h3>Notes / Grocery List</h3>
 
-  <!-- FullCalendar JS -->
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+      <ul id="notesList"></ul>
 
-  <!-- ICAL.js -->
+      <input id="noteInput" placeholder="Add item..." />
+      <button onclick="addNote()">Add</button>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/ical.js/dist/ical.es5.min.cjs"></script>
-
-  <!-- Your app -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
   <script src="app.js"></script>
-
 </body>
 </html>
 
