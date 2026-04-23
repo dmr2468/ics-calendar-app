@@ -34,7 +34,7 @@ async function render() {
     return;
   }
 
-  events.slice(0, 10).forEach(e => {
+  events.slice(0, 128).forEach(e => {
     const li = document.createElement("li");
     li.textContent = `${e.title} - ${e.date}`;
     list.appendChild(li);
