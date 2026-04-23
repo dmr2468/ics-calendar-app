@@ -1,44 +1,49 @@
-
-
 const ICS_URL =
   "https://ics.calendarlabs.com/95/84d417f2/Milwaukee_Brewers_-_MLB.ics";
 
 
-sync function loadEvents() {
+async function loadEvents() {
   const res = await fetch(ICS_URL);
   const text = await res.text();
 
+  console.log("ICS loaded");
+
   const jcal = ICAL.parse(text);
   const comp = new ICAL.Component(jcal);
+  const vevents = comp.getAllSubcomponents("vevent");
 
-  const events = comp.getAllSubcomponents("vevent");
+  console.log("Event count:", vevents.length);
 
   const now = new Date();
 
-  return events
-    .map(e => {
-      const event = new ICAL.Event(e);
+  return vevents
+    .map(v => {
+      const ev = new ICAL.Event(v);
       return {
-        title: event.summary,
-        start: event.startDate.toJSDate(),
-        end: event.endDate ? event.endDate.toJSDate() : null
+        title: ev.summary || "(no title)",
+        start: ev.startDate?.toJSDate?.() || null,
+        end: ev.endDate?.toJSDate?.() || null
       };
     })
-    .filter(e => e.start >= now); // only future events
+    .filter(e => e.start && e.start >= now)          // keep upcoming
+    .sort((a, b) => a.start - b.start);              // soonest first
 }
 
-async function renderCalendar() {
-  const events = await loadEvents();
-
+document.addEventListener("DOMContentLoaded", async () => {
   const calendarEl = document.getElementById("calendar");
+  if (!calendarEl) {
+    console.error("Missing <div id='calendar'></div> in index.html");
+    return;
+  }
+
+  const events = await loadEvents();
 
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: "dayGridMonth",
-    events: events,
-    height: 650
+    height: 650,
+    events
   });
 
   calendar.render();
-}
-
-renderCalendar();
+});
+``
