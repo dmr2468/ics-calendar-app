@@ -1,4 +1,4 @@
-import ICAL from "https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js";
+import * as ICAL from "https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js";
 
 const ICS_URL =
   "https://raw.githubusercontent.com/jens-maus/node-ical/master/test/fixtures/festival-multiday-rrule.ics";
